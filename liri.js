@@ -19,12 +19,19 @@ if (process.argv[2]==='my-tweets') {
 
 // * `my-tweets`
 function myTweets(){
-	var params = {screen_name: 'Kevin56614561'};
-client.get('statuses/user_timeline', params, function(error, tweets, response) {
-  if (!error)
-    console.log(JSON.stringify(tweets, null, 2));
-});
-}
+	
+	var params = {screen_name: 'Kevin56614561',
+				  limit: 20
+					};
+	
+	client.get('statuses/user_timeline', params, function(error, tweets, response) {
+  		if (!error)
+			for (var i = 0; i < tweets.length; i++){
+    		console.log(JSON.stringify(tweets[i].text, null, 2));
+			}
+	});
+};
+
 
 // * `spotify-this-song`
 
