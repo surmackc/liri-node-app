@@ -4,24 +4,62 @@ var Spotify = require('node-spotify-api');
 var Twitter = require('twitter');
 var keys = require('./keys');
 var request = require("request");
+var fs = require("fs");
 
 
 // Access to keys
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 
+let command = process.argv[2];
+let searchString = process.argv.slice(3).join(" "); 
 
+run(command, searchString);
 
-if (process.argv[2]==='my-tweets') {
-		myTweets()
-	} else if (process.argv[2]==='spotify-this-song') {
-		findSong();
-	} else if (process.argv[2]==='movie-this') {
-		findMovie();
-	}
+function run(command, searchString) {
+	
+	if (command === "my-tweets"){
+		myTweets();
+	
+	} else if (command === "spotify-this-song") {
+		if (searchString) {
+			findSong(searchString);
+		} else {
+			findSong("The Sign Ace of Base");
+		}
+	
+	} else if (command === "movie-this") {
+		if (searchString) {
+			findMovie(searchString);
+		} else {
+			findMovie("Mr. Nobody");
+		}
+	
+	} else if (command === "do-what-it-says") {
+			
+			// * `do-what-it-says`
+			
+			fs.readFile("./random.txt", "utf8", function(error, data) {
 
+	  		if (error) {
+	    		return console.log(error);
+	  		}
 
+		  var dataArr = data.split(",");
+
+		  var command = dataArr[0];
+		  var searchString = dataArr[1];
+
+		  run(command, searchString);
+	
+		  });
+
+	} else {
+		console.log("Invalid command, please try again");
+		}
+	};
 // * `my-tweets`
+
 function myTweets(){
 	
 	var params = {screen_name: 'Kevin56614561',
@@ -39,9 +77,9 @@ function myTweets(){
 
 // * `spotify-this-song`
 
-function findSong(){
+function findSong(title){
 	spotify
-	.search({ type: 'track', query: process.argv[3], limit: 1 }, function(err, data) {
+	.search({ type: 'track', query: title, limit: 1 }, function(err, data) {
   if (err) {
     return console.log('Error occurred: ' + err);
   }
@@ -65,8 +103,8 @@ function findSong(){
 };
 // * `movie-this`
 
-function findMovie(){
-	request("http://www.omdbapi.com/?t=" + process.argv[3] + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
+function findMovie(title){
+	request("http://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
   	
   	if (!error && response.statusCode === 200) {
 
@@ -89,4 +127,3 @@ function findMovie(){
 
 };
 
-// * `do-what-it-says`
