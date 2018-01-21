@@ -15,12 +15,12 @@ Commands you can run:  node liri.js command "search"
 
 dotenv file necessary to run:
 
-# Spotify API keys
+Spotify API keys
 
 SPOTIFY_ID=your-spotify-id
 SPOTIFY_SECRET=your-spotify-secret
 
-# Twitter API keys
+Twitter API keys
 
 TWITTER_CONSUMER_KEY=your-twitter-consumer-key
 TWITTER_CONSUMER_SECRET=your-twitter-consumer-secret
