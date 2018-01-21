@@ -14,7 +14,7 @@ Commands you can run:  node liri.js command "search"
 
 
 dotenv file necessary to run:
-
+```
 Spotify API keys
 
 SPOTIFY_ID=your-spotify-id
@@ -26,5 +26,5 @@ TWITTER_CONSUMER_KEY=your-twitter-consumer-key
 TWITTER_CONSUMER_SECRET=your-twitter-consumer-secret
 TWITTER_ACCESS_TOKEN_KEY=your-access-token-key
 TWITTER_ACCESS_TOKEN_SECRET=your-twitter-access-token-secret
-
+```
 This file will be used by the dotenv package to set environment variables to the global process.env object in node. These are values that are specific to the computer that node is running on. This file is .gitignore to keep API key information private.
