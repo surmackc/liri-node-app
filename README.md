@@ -13,7 +13,7 @@ Commands you can run:  node liri.js command "search"
 "do-what-it-says" - takes the text from random.txt file and executes the text as the command line arguments.
 
 
-dotenv file necessary to run:
+`.env` file necessary to run:
 ```
 Spotify API keys
 
@@ -27,4 +27,4 @@ TWITTER_CONSUMER_SECRET=your-twitter-consumer-secret
 TWITTER_ACCESS_TOKEN_KEY=your-access-token-key
 TWITTER_ACCESS_TOKEN_SECRET=your-twitter-access-token-secret
 ```
-This file will be used by the dotenv package to set environment variables to the global process.env object in node. These are values that are specific to the computer that node is running on. This file is .gitignore to keep API key information private.
+This file will be used by the `dotenv` package to set environment variables to the global `process.env` object in node. These are values that are specific to the computer that node is running on. This file is `.gitignore` to keep API key information private.
